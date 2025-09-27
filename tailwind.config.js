@@ -9,6 +9,13 @@ const config = {
   ],
   theme: {
     extend: {
+      colors: {
+        custom: {
+          blue: {
+            100: "#B9C9FF",
+          },
+        },
+      },
       // fontFamily: {
       //   sans: ["var(--font-sans)"],
       //   mono: ["var(--font-mono)"],

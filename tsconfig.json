@@ -25,7 +25,9 @@
       "@/utils": ["./utils"],
       "@/hooks": ["./hooks"],
       "@/public": ["./public"],
-      "@/types": ["./types"]
+      "@/config": ["./config"],
+      "@/types": ["./types"],
+      "@/svg": ["./assets/svg"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

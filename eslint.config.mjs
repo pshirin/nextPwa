@@ -1,5 +1,4 @@
 import { defineConfig, globalIgnores } from "eslint/config";
-import { fixupConfigRules, fixupPluginRules } from "@eslint/compat";
 import react from "eslint-plugin-react";
 import unusedImports from "eslint-plugin-unused-imports";
 import _import from "eslint-plugin-import";
@@ -22,152 +21,146 @@ const compat = new FlatCompat({
 });
 
 export default defineConfig([
+  // Глобальные игноры :cite[1]:cite[2]
   globalIgnores([
-    ".now/*",
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/.next/**",
+    "**/coverage/**",
     "**/*.css",
-    "**/.changeset",
-    "**/dist",
-    "esm/*",
-    "public/*",
-    "tests/*",
-    "scripts/*",
     "**/*.config.js",
+    "**/*.config.ts",
+    "public/**",
+    ".now/**",
+    "esm/**",
+    "tests/**",
+    "scripts/**",
     "**/.DS_Store",
-    "**/node_modules",
-    "**/coverage",
-    "**/.next",
-    "**/build",
-    "!**/.commitlintrc.cjs",
-    "!**/.lintstagedrc.cjs",
-    "!**/jest.config.js",
-    "!**/plopfile.js",
-    "!**/react-shim.js",
-    "!**/tsup.config.ts",
+    "**/.changeset/**",
   ]),
+
+  // Базовые настройки для всех файлов
   {
-    extends: fixupConfigRules(
-      compat.extends(
-        "plugin:react/recommended",
-        "plugin:prettier/recommended",
-        "plugin:react-hooks/recommended",
-        "plugin:jsx-a11y/recommended",
-        "plugin:@next/next/recommended"
-      )
-    ),
-
-    plugins: {
-      react: fixupPluginRules(react),
-      "unused-imports": unusedImports,
-      import: fixupPluginRules(_import),
-      "@typescript-eslint": typescriptEslint,
-      "jsx-a11y": fixupPluginRules(jsxA11Y),
-      prettier: fixupPluginRules(prettier),
+    rules: {
+      "no-console": "warn",
+      "no-debugger": "error",
     },
+  },
 
+  // TypeScript файлы :cite[8]
+  {
+    files: ["**/*.ts", "**/*.tsx"],
     languageOptions: {
-      globals: {
-        ...Object.fromEntries(
-          Object.entries(globals.browser).map(([key]) => [key, "off"])
-        ),
-        ...globals.node,
-      },
-
       parser: tsParser,
-      ecmaVersion: 12,
+      ecmaVersion: "latest",
       sourceType: "module",
-
       parserOptions: {
         ecmaFeatures: {
           jsx: true,
         },
+        project: "./tsconfig.json",
+      },
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ...globals.es2020,
       },
     },
-
-    settings: {
-      react: {
-        version: "detect",
-      },
+    plugins: {
+      "@typescript-eslint": typescriptEslint,
+      import: fixupPluginRules(_import),
+      "unused-imports": unusedImports,
     },
-
-    files: ["**/*.ts", "**/*.tsx"],
-
     rules: {
-      "no-console": "warn",
-      "react/prop-types": "off",
-      "react/jsx-uses-react": "off",
-      "react/react-in-jsx-scope": "off",
-      "react-hooks/exhaustive-deps": "off",
-      "jsx-a11y/click-events-have-key-events": "warn",
-      "jsx-a11y/interactive-supports-focus": "warn",
-      "prettier/prettier": "warn",
-      "no-unused-vars": "off",
-      "unused-imports/no-unused-vars": "off",
-      "unused-imports/no-unused-imports": "warn",
-
+      // Строгие TypeScript правила :cite[4]:cite[8]
+      "@typescript-eslint/no-explicit-any": "error",
       "@typescript-eslint/no-unused-vars": [
-        "warn",
+        "error",
         {
-          args: "after-used",
-          ignoreRestSiblings: false,
-          argsIgnorePattern: "^_.*?$",
+          args: "all",
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          caughtErrors: "all",
         },
       ],
+      "@typescript-eslint/explicit-function-return-type": "warn",
+      "@typescript-eslint/explicit-module-boundary-types": "warn",
+      "@typescript-eslint/prefer-const": "error",
+      "@typescript-eslint/no-unnecessary-type-assertion": "error",
+      "@typescript-eslint/no-floating-promises": "error",
+      "@typescript-eslint/await-thenable": "error",
+      "@typescript-eslint/prefer-nullish-coalescing": "warn",
+      "@typescript-eslint/prefer-optional-chain": "warn",
 
+      // Импорты
       "import/order": [
-        "warn",
+        "error",
         {
           groups: [
-            "type",
             "builtin",
-            "object",
             "external",
             "internal",
             "parent",
             "sibling",
             "index",
+            "object",
+            "type",
           ],
-
-          pathGroups: [
-            {
-              pattern: "~/**",
-              group: "external",
-              position: "after",
-            },
-          ],
-
           "newlines-between": "always",
+          alphabetize: {
+            order: "asc",
+            caseInsensitive: true,
+          },
         },
       ],
+      "unused-imports/no-unused-imports": "error",
+      "unused-imports/no-unused-vars": [
+        "error",
+        {
+          vars: "all",
+          varsIgnorePattern: "^_",
+          args: "after-used",
+          argsIgnorePattern: "^_",
+        },
+      ],
+    },
+  },
 
-      "react/self-closing-comp": "warn",
+  // React/Next.js специфичные настройки
+  {
+    files: ["**/*.tsx", "**/*.jsx"],
+    plugins: {
+      react: fixupPluginRules(react),
+      "react-hooks": fixupPluginRules(require("eslint-plugin-react-hooks")),
+      "jsx-a11y": fixupPluginRules(jsxA11Y),
+    },
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
+    rules: {
+      "react/prop-types": "off",
+      "react/react-in-jsx-scope": "off",
+      "react/jsx-uses-react": "off",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "error",
+      "react/jsx-key": "error",
+      "react/no-unescaped-entities": "error",
+      "jsx-a11y/alt-text": "warn",
+      "jsx-a11y/anchor-is-valid": "warn",
+    },
+  },
 
-      "react/jsx-sort-props": [
-        "warn",
-        {
-          callbacksLast: true,
-          shorthandFirst: true,
-          noSortAlphabetically: false,
-          reservedFirst: true,
-        },
-      ],
-      "padding-line-between-statements": [
-        "warn",
-        {
-          blankLine: "always",
-          prev: "*",
-          next: "return",
-        },
-        {
-          blankLine: "always",
-          prev: ["const", "let", "var"],
-          next: "*",
-        },
-        {
-          blankLine: "any",
-          prev: ["const", "let", "var"],
-          next: ["const", "let", "var"],
-        },
-      ],
+  // Prettier интеграция (должен быть последним) :cite[3]
+  {
+    files: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
+    plugins: {
+      prettier: fixupPluginRules(prettier),
+    },
+    rules: {
+      "prettier/prettier": "error",
     },
   },
 ]);

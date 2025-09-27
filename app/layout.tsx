@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning lang="en">
+    <html suppressHydrationWarning lang="ru">
       <head />
       <body
         className={clsx(
@@ -30,9 +30,7 @@ export default function RootLayout({
       >
         <Providers>
           <div className="relative flex flex-col h-screen">
-            <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
-              {children}
-            </main>
+            <main className="w-full h-full">{children}</main>
           </div>
         </Providers>
       </body>

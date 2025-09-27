@@ -6,7 +6,11 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --fix"
+    "lint:strict": "eslint . --max-warnings=0",
+    "lint:types": "tsc --noEmit",
+    "lint:all": "npm run lint:strict && npm run lint:types",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\""
   },
   "dependencies": {
     "@heroui/accordion": "2.2.23",
