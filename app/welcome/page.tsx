@@ -5,12 +5,13 @@ import phoneImage from "@/public/png/welcomePhone.png";
 import welcomePanda from "@/public/png/welcomePanda.png";
 import { Button } from "@heroui/button";
 import Link from "next/link";
+import { pages } from "@/config/paths";
 
 export default async function Signin() {
   return (
     <WithWelcomePatternBackground>
-      <section className="relative h-full w-screen flex flex-col items-center overflow-x-clip justify-between">
-        <div className="relative w-[220px] h-[429px] flex-1">
+      <section className="relative h-full w-screen flex flex-col items-center overflow-x-clip justify-between pt-6">
+        <div className="relative w-[220px] h-[429px] flex-1 pointer-events-none select-none">
           <Image
             src={phoneImage}
             alt=" "
@@ -21,7 +22,7 @@ export default async function Signin() {
             priority
             placeholder="blur"
           />
-          <div className="absolute left-32 top-36">
+          <div className="absolute left-32 top-36 pointer-events-none select-none">
             <div className="relative w-[202px] h-[328px]">
               <Image
                 src={welcomePanda}
@@ -47,7 +48,7 @@ export default async function Signin() {
 
           <Button
             as={Link}
-            href="/auth/scenario"
+            href={pages.auth.scenario}
             className="text-base"
             radius="lg"
             size="lg"

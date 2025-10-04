@@ -25,16 +25,14 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          "min-h-screen text-foreground bg-background font-sans antialiased",
+          "min-h-svh h-full text-foreground bg-background font-sans antialiased",
           nunito.variable,
           inter.variable,
           inter.className
         )}
       >
         <Providers>
-          <div className="relative flex flex-col h-screen">
-            <main className="w-full h-full">{children}</main>
-          </div>
+          <main className="relative flex flex-col inset-0">{children}</main>
         </Providers>
       </body>
     </html>

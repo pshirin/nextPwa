@@ -1,2 +1,9 @@
 @import "tailwindcss";
 @config "../tailwind.config.js";
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-text-fill-color: black !important;
+}

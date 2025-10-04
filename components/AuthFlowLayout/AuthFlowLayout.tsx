@@ -1,7 +1,4 @@
 import { AltArrowLeft } from "@/assets/icons/svg/AltArrowLeft";
-
-import { Button } from "@heroui/button";
-
 import Link from "next/link";
 import { DialogContent } from "../DialogContent";
 
@@ -10,8 +7,8 @@ interface AuthFlowLayoutProps {
   backButton?: {
     to: string;
   };
-  title?: string;
-  description?: string;
+  title?: React.ReactNode;
+  description?: React.ReactNode;
 }
 export const AuthFlowLayout = ({
   backButton,
@@ -20,19 +17,14 @@ export const AuthFlowLayout = ({
   children,
 }: AuthFlowLayoutProps) => {
   return (
-    <div className="w-screen h-screen">
+    <div className="max-h-svh h-full flex flex-col">
       {backButton && (
-        <Button
-          isIconOnly
-          as={Link}
+        <Link
           href={backButton.to}
-          color="default"
-          size="lg"
-          radius="full"
-          variant="flat"
+          className="size-12 flex justify-center items-center rounded-full bg-default-100"
         >
           <AltArrowLeft />
-        </Button>
+        </Link>
       )}
       <DialogContent description={description} title={title} />
       {children}

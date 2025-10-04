@@ -2,8 +2,8 @@ import Image from "next/image";
 import { ComponentProps } from "react";
 
 interface DialogContentProps {
-  title?: string;
-  description?: string;
+  title?: React.ReactNode;
+  description?: React.ReactNode;
   icon?: {
     import: ComponentProps<typeof Image>["src"];
     width: number;
