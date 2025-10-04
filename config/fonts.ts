@@ -1,11 +1,10 @@
-// import { FontSans} from "next/font/google";
+import { Nunito, Inter } from "next/font/google";
 
-// export const fontSans = FontSans({
-//   subsets: ["latin"],
-//   variable: "--font-sans",
-// });
-
-// export const fontMono = FontMono({
-//   subsets: ["latin"],
-//   variable: "--font-mono",
-// });
+export const nunito = Nunito({
+  subsets: ["cyrillic"],
+  variable: "--font-nunito",
+});
+export const inter = Inter({
+  subsets: ["cyrillic"],
+  variable: "--font-inter",
+});

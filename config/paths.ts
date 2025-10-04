@@ -1,6 +1,7 @@
 const pages = {
   home: "/",
-  signIn: "/auth/signin",
+  signIn: "",
+  welcome: "/welcome",
 };
 
 export { pages };

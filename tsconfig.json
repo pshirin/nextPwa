@@ -27,7 +27,7 @@
       "@/public": ["./public"],
       "@/config": ["./config"],
       "@/types": ["./types"],
-      "@/svg": ["./assets/svg"]
+      "@/svg": ["./assets/icons/svg"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

@@ -16,14 +16,21 @@ const config = {
           },
         },
       },
-      // fontFamily: {
-      //   sans: ["var(--font-sans)"],
-      //   mono: ["var(--font-mono)"],
-      // },
+      fontFamily: {
+        inter: ["var(--font-inter)"],
+        nunito: ["var(--font-nunito)"],
+      },
     },
   },
   darkMode: "class",
-  plugins: [heroui()],
+  plugins: [
+    heroui({
+      prefix: "heroui",
+      addCommonColors: false,
+      defaultTheme: "light",
+      defaultExtendTheme: "light",
+    }),
+  ],
 };
 
 module.exports = config;

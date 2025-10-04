@@ -3,6 +3,7 @@ import { Metadata, Viewport } from "next";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
+import { inter, nunito } from "@/config/fonts";
 
 export const metadata: Metadata = {
   title: "title",
@@ -24,8 +25,10 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          "min-h-screen text-foreground bg-background font-sans antialiased"
-          // fontSans.variable
+          "min-h-screen text-foreground bg-background font-sans antialiased",
+          nunito.variable,
+          inter.variable,
+          inter.className
         )}
       >
         <Providers>
