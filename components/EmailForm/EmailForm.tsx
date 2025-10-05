@@ -16,9 +16,8 @@ const schema = yup.object().shape({
 interface EmailFormProps {
   footer?: React.ReactNode;
 }
-interface SubmitValues {
-  email: string;
-}
+type SubmitValues = yup.InferType<typeof schema>;
+
 export const EmailForm = ({ footer }: EmailFormProps) => {
   const {
     register,

@@ -38,8 +38,7 @@ export default async function Signin() {
             </div>
           </div>
         </div>
-
-        <div className="pt-9 px-4 pb-7 flex flex-col items-center gap-9 rounded-2xl bg-white mb-0">
+        <div className="pt-9 px-4 pb-7 flex flex-col items-center rounded-2xl bg-white mb-0">
           <DialogContent
             description="Забудьте о таблицах и путанице! Мы возьмём на себя расписание,
               напоминания и контроль оплат — всё в одном месте"

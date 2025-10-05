@@ -21,7 +21,7 @@ export const AuthFlowLayout = ({
       {backButton && (
         <Link
           href={backButton.to}
-          className="size-12 flex justify-center items-center rounded-full bg-default-100"
+          className="size-12 flex justify-center items-center rounded-full bg-default-100 min-h-12 min-w-12"
         >
           <AltArrowLeft />
         </Link>

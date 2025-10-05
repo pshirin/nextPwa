@@ -9,6 +9,6 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt",
   },
   pages: {
-    signIn: pages.signIn,
+    signIn: pages.auth.scenario,
   },
 };

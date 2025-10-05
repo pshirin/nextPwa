@@ -6,6 +6,7 @@ const pages = {
   auth: {
     scenario: "/auth/scenario",
     otp: "/auth/otp",
+    signout: "/api/auth/signout",
   },
 };
 

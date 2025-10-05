@@ -5,3 +5,4 @@ export * from "./WithWelcomePatternBackground";
 export * from "./ByEmailAuthForm";
 export * from "./EmailForm";
 export * from "./SocialsAuth";
+export * from "./OtpForm";
