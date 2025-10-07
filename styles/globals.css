@@ -1,9 +1,19 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @config "../tailwind.config.js";
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-    -webkit-text-fill-color: black !important;
+  -webkit-text-fill-color: black !important;
+}
+
+@layer base {
+  :root {
+    /* Макет 393×777 */
+    --vh-per-px: calc(100vh / 777); /* классическое vh */
+    --vw-per-px: calc(100vw / 393); /* классическое vw */
+    --dvh-per-px: calc(100dvh / 777); /* dynamic viewport height (мобильные браузеры) */
+    --dvw-per-px: calc(100dvw / 393); /* dynamic viewport width */
+  }
 }

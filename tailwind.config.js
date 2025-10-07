@@ -1,34 +1,38 @@
-import { heroui } from "@heroui/theme";
+import { heroui } from '@heroui/theme';
 
 /** @type {import('tailwindcss').Config} */
 const config = {
   content: [
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
       colors: {
         custom: {
           blue: {
-            100: "#B9C9FF",
+            100: '#B9C9FF',
           },
         },
       },
+      spacing: {
+        vh: (value) => `calc(${(value / 798) * 100}vh)`,
+        vw: (value) => `calc(${(value / 393) * 100}vw)`,
+      },
       fontFamily: {
-        inter: ["var(--font-inter)"],
-        nunito: ["var(--font-nunito)"],
+        inter: ['var(--font-inter)'],
+        nunito: ['var(--font-nunito)'],
       },
     },
   },
-  darkMode: "class",
+  darkMode: 'class',
   plugins: [
     heroui({
-      prefix: "heroui",
+      prefix: 'heroui',
       addCommonColors: false,
-      defaultTheme: "light",
-      defaultExtendTheme: "light",
+      defaultTheme: 'light',
+      defaultExtendTheme: 'light',
     }),
   ],
 };

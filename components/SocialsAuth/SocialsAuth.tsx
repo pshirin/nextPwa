@@ -31,7 +31,7 @@ export const SocialsAuth = () => {
           <li
             key={social.name}
             onClick={clickHandler(social.name)}
-            className="cursor-pointer"
+            className="cursor-pointer hover:contrast-125 hover:scale-110"
           >
             {social.icon}
           </li>

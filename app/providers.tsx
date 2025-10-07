@@ -1,19 +1,10 @@
-"use client";
-import type { ThemeProviderProps } from "next-themes";
-import * as React from "react";
-import { HeroUIProvider } from "@heroui/system";
-import { useRouter } from "next/navigation";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
-import { setLocale } from "yup";
-import ru from "yup-locale-ru";
-
-setLocale(ru);
-
-import {
-  isServer,
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
+'use client';
+import type { ThemeProviderProps } from 'next-themes';
+import * as React from 'react';
+import { HeroUIProvider } from '@heroui/system';
+import { useRouter } from 'next/navigation';
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
+import { isServer, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 function makeQueryClient() {
   return new QueryClient({
@@ -40,11 +31,9 @@ export interface ProvidersProps {
   themeProps?: ThemeProviderProps;
 }
 
-declare module "@react-types/shared" {
+declare module '@react-types/shared' {
   interface RouterConfig {
-    routerOptions: NonNullable<
-      Parameters<ReturnType<typeof useRouter>["push"]>[1]
-    >;
+    routerOptions: NonNullable<Parameters<ReturnType<typeof useRouter>['push']>[1]>;
   }
 }
 
@@ -54,9 +43,7 @@ export function Providers({ children, themeProps }: ProvidersProps) {
   return (
     <HeroUIProvider navigate={router.push}>
       <NextThemesProvider {...themeProps}>
-        <QueryClientProvider client={queryClient}>
-          {children}
-        </QueryClientProvider>
+        <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
       </NextThemesProvider>
     </HeroUIProvider>
   );
