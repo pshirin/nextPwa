@@ -6,20 +6,14 @@ import welcomePanda from '@/public/png/welcomePanda.png';
 import { Button } from '@heroui/button';
 import Link from 'next/link';
 import { pages } from '@/config/paths';
-import { vh, vw } from '@/styles/utils';
+import { vh } from '@/styles/utils';
 
 export default async function Signin() {
   return (
     <WithWelcomePatternBackground>
       {/* Первая секция (фон и телефон) */}
-      <section
-        className="relative grid grid-cols-1 overflow-x-clip h-full justify-between"
-        style={{ paddingTop: vh(24) }}
-      >
-        <div
-          className="relative flex-1 pointer-events-none select-none m-auto"
-          style={{ width: vh(220), height: vh(429) }}
-        >
+      <section className="relative grid grid-cols-1 overflow-x-clip s-pt-[24] h-full">
+        <div className="relative pointer-events-none select-none mx-auto s-w-[220] s-h-[429]">
           <Image
             src={phoneImage}
             alt="Телефон"
@@ -32,11 +26,8 @@ export default async function Signin() {
           />
 
           {/* Панда на экране телефона */}
-          <div
-            className="absolute pointer-events-none select-none"
-            style={{ left: vh(128), top: vh(149) }}
-          >
-            <div className="relative" style={{ width: vh(202), height: vh(328) }}>
+          <div className="absolute pointer-events-none select-none s-left-[128] s-top-[149]">
+            <div className="relative s-w-[202] s-h-[328]">
               <Image src={welcomePanda} alt="Панда" fill priority placeholder="empty" />
             </div>
           </div>
@@ -45,13 +36,9 @@ export default async function Signin() {
         {/* Контентная часть */}
         <div
           style={{
-            borderRadius: vh(36),
-            marginBottom: vh(27),
-            paddingRight: vh(16),
-            paddingLeft: vh(16),
             boxShadow: '0 -4px 12px rgba(0,0,0,0.1)', // смещение вверх
           }}
-          className="flex flex-col items-center bg-white mx-auto w-full shadow-md self-end rounded-b-none"
+          className="bg-white w-full shadow-md rounded-b-none s-pb-[27] s-rounded-[16] s-px-[16] max-h-min flex flex-col"
         >
           <DialogContent
             title="Добро пожаловать в «пока нет названия»!"
@@ -61,14 +48,8 @@ export default async function Signin() {
           <Button
             as={Link}
             href={pages.auth.scenario}
-            style={{
-              fontSize: vh(16),
-              padding: vh(12),
-              lineHeight: vh(24),
-              borderRadius: vh(14),
-            }}
             fullWidth
-            className="!h-auto"
+            className="h-auto s-text-[16] s-p-[12] s-leading-[24] s-rounded-[14]"
             variant="solid"
             color="primary"
           >

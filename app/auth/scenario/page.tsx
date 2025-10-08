@@ -1,9 +1,9 @@
-import { AuthFlowLayout, ByEmailAuthForm, SocialsAuth } from "@/components";
-import { pages } from "@/config/paths";
+import { AuthFlowLayout, ByEmailAuthForm, SocialsAuth } from '@/components';
+import { pages } from '@/config/paths';
 
 export default async function Scenario() {
   return (
-    <section className="flex flex-col items-center justify-center gap-4 px-3">
+    <section className="s-pl-[12] s-gap-[16] s-px-[12] flex flex-col items-center justify-center">
       <AuthFlowLayout
         backButton={{ to: pages.welcome }}
         title="Введите вашу электронную почту"

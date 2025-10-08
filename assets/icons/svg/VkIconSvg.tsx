@@ -1,4 +1,4 @@
-import { SVGProps } from "react";
+import { SVGProps } from 'react';
 
 export const VkIconSvg = (props: SVGProps<SVGSVGElement>) => {
   return (
@@ -7,38 +7,17 @@ export const VkIconSvg = (props: SVGProps<SVGSVGElement>) => {
       height="48"
       viewBox="0 0 49 48"
       fill="none"
+      {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <rect
-        x="0.5"
-        width="48"
-        height="48"
-        rx="16"
-        fill="url(#pattern0_21_684)"
-      />
-      <rect
-        x="0.5"
-        width="48"
-        height="48"
-        rx="16"
-        fill="url(#pattern1_21_684)"
-      />
+      <rect x="0.5" width="48" height="48" rx="16" fill="url(#pattern0_21_684)" />
+      <rect x="0.5" width="48" height="48" rx="16" fill="url(#pattern1_21_684)" />
       <defs>
-        <pattern
-          id="pattern0_21_684"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
+        <pattern id="pattern0_21_684" patternContentUnits="objectBoundingBox" width="1" height="1">
           <use xlinkHref="#image0_21_684" transform="scale(0.00208333)" />
         </pattern>
-        <pattern
-          id="pattern1_21_684"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
+        <pattern id="pattern1_21_684" patternContentUnits="objectBoundingBox" width="1" height="1">
           <use xlinkHref="#image1_21_684" transform="scale(0.0025)" />
         </pattern>
         <image

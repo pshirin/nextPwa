@@ -1,9 +1,9 @@
-import { AuthFlowLayout, OtpForm } from "@/components";
+import { AuthFlowLayout, OtpForm } from '@/components';
 
-import { redirect } from "next/navigation";
-import { pages } from "@/config/paths";
-import { InputOtp } from "@heroui/input-otp";
-import { Button } from "@heroui/button";
+import { redirect } from 'next/navigation';
+import { pages } from '@/config/paths';
+import { InputOtp } from '@heroui/input-otp';
+import { Button } from '@heroui/button';
 
 interface OtpPageProps {
   params: Promise<never>;
@@ -19,14 +19,13 @@ export default async function Otp({ searchParams }: OtpPageProps) {
   }
 
   return (
-    <section className="flex flex-col items-center justify-center gap-4 px-3">
+    <section className="s-gap-[16] s-px-[12] flex h-dvh flex-col items-center justify-center">
       <AuthFlowLayout
         backButton={{ to: pages.auth.scenario }}
         title="Введите код"
         description={
           <span>
-            На почту <span className="text-blue-600">{email}</span> отправлен
-            код подтверждения
+            На почту <span className="text-blue-600">{email}</span> отправлен код подтверждения
           </span>
         }
       >

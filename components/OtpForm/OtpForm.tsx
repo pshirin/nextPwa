@@ -1,15 +1,13 @@
 'use client';
 import { fakeApi } from '@/utils/common';
-import { Alert } from '@heroui/alert';
 import { Button } from '@heroui/button';
 import { InputOtp } from '@heroui/input-otp';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { useMutation } from '@tanstack/react-query';
-import { useForm } from 'react-hook-form';
-// import * as zod from 'zod';
+import * as zod from 'zod';
 import { ResponseErrorAlert } from '../ResponseErrorAlert';
-import React, { useCallback, useEffect, useState } from 'react';
-
+import { zodResolver } from '@hookform/resolvers/zod';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 interface OtpFormProps {
   email: string;
 }
@@ -19,65 +17,64 @@ const formatTime = (seconds: number) => {
   return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
 };
 const OTP_LENGTH = 5;
+const schema = zod.object({
+  otp: zod.string().min(OTP_LENGTH),
+});
 
-// const schema = zod.object().shape({
-//   otp: zod.string().min(OTP_LENGTH).required(),
-// });
+type SubmitValues = zod.Infer<typeof schema>;
 
-// type SubmitValues = zod.InferType<typeof schema>;
+// const FIVE_MINUTES_IN_SECONDS = 5 * 60;
+// const CodeInterval = () => {
+//   const [timeLeft, setTimeLeft] = useState(FIVE_MINUTES_IN_SECONDS);
+//   const [canResend, setCanResend] = useState(false);
+//   useEffect(() => {
+//     if (timeLeft <= 0) {
+//       setCanResend(true);
+//       return;
+//     }
 
-const FIVE_MINUTES_IN_SECONDS = 5 * 60;
-const CodeInterval = () => {
-  const [timeLeft, setTimeLeft] = useState(FIVE_MINUTES_IN_SECONDS);
-  const [canResend, setCanResend] = useState(false);
-  useEffect(() => {
-    if (timeLeft <= 0) {
-      setCanResend(true);
-      return;
-    }
+//     const timer = setInterval(() => {
+//       setTimeLeft((prevTime) => {
+//         if (prevTime <= 1) {
+//           setCanResend(true);
+//           return 0;
+//         }
+//         return prevTime - 1;
+//       });
+//     }, 1000);
 
-    const timer = setInterval(() => {
-      setTimeLeft((prevTime) => {
-        if (prevTime <= 1) {
-          setCanResend(true);
-          return 0;
-        }
-        return prevTime - 1;
-      });
-    }, 1000);
+//     return () => clearInterval(timer);
+//   }, [timeLeft]);
+//   const handleResendCode = () => {
+//     // Здесь логика повторной отправки кода
+//     console.log('Resending code...');
 
-    return () => clearInterval(timer);
-  }, [timeLeft]);
-  const handleResendCode = () => {
-    // Здесь логика повторной отправки кода
-    console.log('Resending code...');
-
-    // Сброс таймера
-    setTimeLeft(FIVE_MINUTES_IN_SECONDS);
-    setCanResend(false);
-  };
-  return (
-    <React.Fragment key="interval">
-      {!canResend ? (
-        <p className="text-zinc-400">Отправить код повторно через {formatTime(timeLeft)}</p>
-      ) : (
-        <Button
-          variant="light"
-          color="primary"
-          size="sm"
-          onPress={handleResendCode}
-          className="text-primary"
-        >
-          Отправить код повторно
-        </Button>
-      )}
-      <div>
-        <p className="text-zinc-500 text-center">Не приходит код?</p>
-        <p className="text-zinc-500 text-center">проверьте в папке «спам»</p>
-      </div>
-    </React.Fragment>
-  );
-};
+//     // Сброс таймера
+//     setTimeLeft(FIVE_MINUTES_IN_SECONDS);
+//     setCanResend(false);
+//   };
+//   return (
+//     <React.Fragment key="interval">
+//       {!canResend ? (
+//         <p className="text-zinc-400">Отправить код повторно через {formatTime(timeLeft)}</p>
+//       ) : (
+//         <Button
+//           variant="light"
+//           color="primary"
+//           size="sm"
+//           onPress={handleResendCode}
+//           className="text-primary"
+//         >
+//           Отправить код повторно
+//         </Button>
+//       )}
+//       <div>
+//         <p className="text-center text-zinc-500">Не приходит код?</p>
+//         <p className="text-center text-zinc-500">проверьте в папке «спам»</p>
+//       </div>
+//     </React.Fragment>
+//   );
+// };
 
 export const OtpForm = ({ email }: OtpFormProps) => {
   const {
@@ -86,7 +83,7 @@ export const OtpForm = ({ email }: OtpFormProps) => {
     formState: { errors, isValid },
   } = useForm<SubmitValues>({
     mode: 'onTouched',
-    resolver: yupResolver(schema),
+    resolver: zodResolver(schema),
   });
 
   const mutation = useMutation({
@@ -104,15 +101,13 @@ export const OtpForm = ({ email }: OtpFormProps) => {
   const isInvalid = !!errors.otp?.message;
   const isDisableSubmitButton = !isValid || isInvalid;
   return (
-    <form className="flex flex-col justify-between h-svh pb-4" onSubmit={submitHandler}>
-      <div className="flex items-center justify-center flex-col gap-4">
+    <form className="s-pb-[16] flex h-full flex-col justify-between" onSubmit={submitHandler}>
+      <div className="s-gap-[4] flex flex-col items-center justify-center">
         <InputOtp
           {...register('otp')}
           length={OTP_LENGTH}
           isInvalid={isInvalid}
           errorMessage={validationMessage}
-          className="max-w-min"
-          classNames={{ errorMessage: 'w-full' }}
         />
         <ResponseErrorAlert message={mutation.error?.message} />
       </div>{' '}
@@ -124,6 +119,7 @@ export const OtpForm = ({ email }: OtpFormProps) => {
         isDisabled={isDisableSubmitButton}
         fullWidth
         type="submit"
+        className="s-text-[16] s-p-[12] s-leading-[24] s-rounded-[14] h-auto"
       >
         Войти
       </Button>

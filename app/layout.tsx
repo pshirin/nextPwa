@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head />
       <body
         className={clsx(
-          'min-h-svh h-full text-foreground bg-background antialiased',
+          'text-foreground bg-background antialiased',
           nunito.variable,
           inter.variable,
           inter.className,

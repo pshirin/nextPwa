@@ -1,19 +1,18 @@
-import { Link } from "@heroui/link";
-import NextLink from "next/link";
-import { EmailForm } from "../EmailForm";
+import Link from 'next/link';
+import { EmailForm } from '../EmailForm';
 
 export const ByEmailAuthForm = () => {
   return (
     <div>
       <EmailForm
         footer={
-          <p className="text-tiny text-zinc-600 mt-4">
-            Продолжая, вы соглашаетесь с{" "}
-            <Link as={NextLink} href="#" className="underline text-tiny">
+          <p className="s-text-[12] row text-center text-zinc-600 outline-none">
+            <span>Продолжая, вы соглашаетесь с</span>{' '}
+            <Link href="#" className="s-text-[12] text-blue-600 underline outline-none">
               пользовательским соглашением
-            </Link>{" "}
-            и даёте согласие на{" "}
-            <Link as={NextLink} href="#" className="underline text-tiny">
+            </Link>{' '}
+            <span> и даёте согласие на </span>{' '}
+            <Link href="#" className="s-text-[12] text-blue-600 underline outline-none">
               обработку персональных данных
             </Link>
           </p>

@@ -100,7 +100,6 @@ export default defineConfig([
       'no-unused-vars': 'off',
       'unused-imports/no-unused-vars': 'off',
       'unused-imports/no-unused-imports': 'warn',
-
       '@typescript-eslint/no-unused-vars': [
         'warn',
         {
@@ -109,7 +108,6 @@ export default defineConfig([
           argsIgnorePattern: '^_.*?$',
         },
       ],
-
       'import/order': [
         'warn',
         {
@@ -123,7 +121,6 @@ export default defineConfig([
             'sibling',
             'index',
           ],
-
           pathGroups: [
             {
               pattern: '~/**',
@@ -131,13 +128,10 @@ export default defineConfig([
               position: 'after',
             },
           ],
-
           'newlines-between': 'always',
         },
       ],
-
       'react/self-closing-comp': 'warn',
-
       'react/jsx-sort-props': [
         'warn',
         {

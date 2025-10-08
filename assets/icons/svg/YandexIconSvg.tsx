@@ -1,4 +1,4 @@
-import { SVGProps } from "react";
+import { SVGProps } from 'react';
 
 export const YandexIconSvg = (props: SVGProps<SVGSVGElement>) => {
   return (
@@ -8,22 +8,12 @@ export const YandexIconSvg = (props: SVGProps<SVGSVGElement>) => {
       viewBox="0 0 49 48"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <rect
-        x="0.5"
-        width="48"
-        height="48"
-        rx="16"
-        fill="url(#pattern0_21_683)"
-      />
+      <rect x="0.5" width="48" height="48" rx="16" fill="url(#pattern0_21_683)" />
       <defs>
-        <pattern
-          id="pattern0_21_683"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
+        <pattern id="pattern0_21_683" patternContentUnits="objectBoundingBox" width="1" height="1">
           <use xlinkHref="#image0_21_683" transform="scale(0.00208333)" />
         </pattern>
         <image

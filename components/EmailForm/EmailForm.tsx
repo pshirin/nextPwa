@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 import { ResponseErrorAlert } from '../ResponseErrorAlert';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as zod from 'zod';
+import { vh } from '@/styles/utils';
 
 const schema = zod.object({
   email: zod.email(),
@@ -48,7 +49,7 @@ export const EmailForm = ({ footer }: EmailFormProps) => {
   const isInvalid = !!errors.email?.message;
   const isDisableSubmitButton = !isValid || isInvalid;
   return (
-    <form className="flex flex-col gap-4" onSubmit={handleSubmit(submitHandler)}>
+    <form className="s-gap-[16] flex flex-col" onSubmit={handleSubmit(submitHandler)}>
       <Input
         {...register('email')}
         isDisabled={mutation.isPending}
@@ -56,14 +57,13 @@ export const EmailForm = ({ footer }: EmailFormProps) => {
         variant="flat"
         color="default"
         autoComplete="email"
-        size="sm"
         errorMessage={validationMessage}
+        className="!s-text-[14] s-leading-[20] s-py-[8]"
         classNames={{
-          input: 'text-foreground',
-          inputWrapper: 'bg-content1',
+          inputWrapper: '!s-max-h-[56] !s-h-[56] s-px-[12] !min-h-[10]',
+          label: 's-text-[14] s-leading-[20]',
         }}
         isInvalid={isInvalid}
-        radius="md"
       />
       <ResponseErrorAlert message={mutation.error?.message} />
       <Button
@@ -71,8 +71,7 @@ export const EmailForm = ({ footer }: EmailFormProps) => {
         isDisabled={isDisableSubmitButton}
         variant="solid"
         color="primary"
-        size="lg"
-        radius="lg"
+        className="s-text-[16] s-p-[12] s-leading-[24] s-rounded-[14] h-auto"
         fullWidth
         type="submit"
       >
